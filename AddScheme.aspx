@@ -20,7 +20,7 @@
                       </td>
                           </tr>
                       <tr>
-                      <td valign="middle">
+                      <td valign="middle">   
                        Select Course
                        </td>
                        <td valign="middle">
