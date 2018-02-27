@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QusMaster {
+namespace QuesGen {
     
     
     public partial class sec_mark {

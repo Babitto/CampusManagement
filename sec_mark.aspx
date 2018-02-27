@@ -1,26 +1,23 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="sec_mark.aspx.cs" Inherits="QusMaster.sec_mark" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="sec_mark.aspx.cs" Inherits="QuesGen.sec_mark" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-     <div class="row mt">
+    <div class="row mt">
                     <div class="col-lg-12">
           			<div class="form-panel">
                   	  <h4 class="mb"><i class="fa fa-angle-right"></i>Section Mark Registration</h4>
                       <%--<form class="form-inline" role="form">--%>
                           <div>
                       <table class="table" align="left">
-
-                         
-
-                         
+  
                       <tr>
                       <td valign="middle">
                        Scheme
                        </td>
                        <td valign="middle">
                       <div class="form-group">
-                         <asp:DropDownList ID="ddlscheme" AppendDataBoundItems="true" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlscheme_SelectedIndexChanged" >
+                         <asp:DropDownList ID="ddlscheme" AppendDataBoundItems="true" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlscheme_SelectedIndexChanged"  >
                               <asp:ListItem Value="0">Select</asp:ListItem>                      
                      </asp:DropDownList>   
                        </div>
@@ -37,7 +34,7 @@
 
 <tr>
 
-              <asp:gridview ID="Gridview1" runat="server" ShowFooter="True" AutoGenerateColumns="False" OnSelectedIndexChanged="Gridview1_SelectedIndexChanged" CellPadding="4" ForeColor="#333333" GridLines="None" >
+              <asp:gridview ID="Gridview1" runat="server" ShowFooter="True" AutoGenerateColumns="False"  CellPadding="4" ForeColor="#333333" GridLines="None" >
 
                   <AlternatingRowStyle BackColor="White" />
 
@@ -94,10 +91,11 @@
 </asp:gridview>
     </tr>
                           </table>
-            <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />                   
+            <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />                   
                     </div>
                           </div>
                         </div>
         </div>
+
 
 </asp:Content>

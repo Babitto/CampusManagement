@@ -8,37 +8,30 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
 
-namespace QusMaster
+namespace QuesGen
 {
     public partial class sec_mark : System.Web.UI.Page
     {
+        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["qusmaster"].ConnectionString);
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!IsPostBack)
             {
-                SqlConnection conn = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=qus;User ID=sa;Password=admin123");
-                conn.Open();
-                string comm = "Select scheme_name,scheme_id from tbl_scheme ";
-                SqlDataAdapter adptt = new SqlDataAdapter(comm, conn);
+               // SqlConnection conn = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=qus;User ID=sa;Password=admin123");
+                con.Open();
+                string com = "Select scheme_name,scheme_id from tbl_scheme ";
+                SqlDataAdapter adptt = new SqlDataAdapter(com, con);
                 DataTable dtt = new DataTable();
                 adptt.Fill(dtt);
                 ddlscheme.DataSource = dtt;
                 ddlscheme.DataTextField = "scheme_name";
                 ddlscheme.DataValueField = "scheme_id";
                 ddlscheme.DataBind();
-                conn.Close();
+                con.Close();
             }
-
-            //if (!Page.IsPostBack)
-            //{
-
-            //    SetInitialRow();
-
-            //}
-
-
         }
+
 
         private void SetInitialRow()
         {
@@ -201,17 +194,12 @@ namespace QusMaster
                 }
 
             }
-
+            
         }
 
-        protected void Gridview1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=qus;User ID=sa;Password=admin123");
             con.Open();
 
             foreach (GridViewRow gr in Gridview1.Rows)
@@ -230,16 +218,15 @@ namespace QusMaster
                 }
             }
 
-            
+
 
             ddlscheme.ClearSelection();
-            
-           
+
+
 
 
 
             Response.Redirect("sec_mark.aspx");
-
         }
 
         protected void ddlscheme_SelectedIndexChanged(object sender, EventArgs e)
@@ -247,7 +234,7 @@ namespace QusMaster
             SetInitialRow();
 
 
-            SqlConnection con = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=qus;User ID=sa;Password=admin123");
+           // SqlConnection con = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=qus;User ID=sa;Password=admin123");
             con.Open();
             string com = "SELECT section from tbl_scheme where scheme_id = '" + ddlscheme.SelectedItem.Value + "' ";
             SqlDataAdapter adpt = new SqlDataAdapter(com, con);
@@ -261,11 +248,12 @@ namespace QusMaster
                 abc = Convert.ToInt32(drv.Row["section"]);
             }
 
-            for (int i = 1; i <abc; i++)
+            for (int i = 1; i < abc; i++)
             {
                 AddNewRowToGrid();
             }
         }
-        
+
+
     }
 }
