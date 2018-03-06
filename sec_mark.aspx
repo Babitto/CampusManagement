@@ -10,6 +10,19 @@
                       <%--<form class="form-inline" role="form">--%>
                           <div>
                       <table class="table" align="left">
+                        
+                           <tr>
+                      <td valign="middle">
+                       Exam
+                       </td>
+                       <td valign="middle">
+                      <div class="form-group">
+                         <asp:DropDownList ID="ddlexam" AppendDataBoundItems="true" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlexam_SelectedIndexChanged">
+                              <asp:ListItem Value="0">Select</asp:ListItem>                      
+                     </asp:DropDownList>   
+                       </div>
+                      </td>
+                      </tr>  
   
                       <tr>
                       <td valign="middle">
@@ -17,7 +30,7 @@
                        </td>
                        <td valign="middle">
                       <div class="form-group">
-                         <asp:DropDownList ID="ddlscheme" AppendDataBoundItems="true" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlscheme_SelectedIndexChanged"  >
+                         <asp:DropDownList ID="ddlscheme" AppendDataBoundItems="false" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlscheme_SelectedIndexChanged"  >
                               <asp:ListItem Value="0">Select</asp:ListItem>                      
                      </asp:DropDownList>   
                        </div>
@@ -27,16 +40,14 @@
                     
                                  
 
-
+&nbsp;&nbsp;
                             <%-- <asp:TextBox ID="txtdtrecmm" runat="server" CssClass="datepicker" style="width:325px !important;" />  --%>
                                       
                           
 
 <tr>
 
-              <asp:gridview ID="Gridview1" runat="server" ShowFooter="True" AutoGenerateColumns="False"  CellPadding="4" ForeColor="#333333" GridLines="None" >
-
-                  <AlternatingRowStyle BackColor="White" />
+              <asp:gridview ID="Gridview1" runat="server" ShowFooter="True" AutoGenerateColumns="False"  CellPadding="3" GridLines="None" Width="1034px" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellSpacing="1" >
 
         <Columns>
 
@@ -52,7 +63,7 @@
 
         </asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Max. Mark">
+        <asp:TemplateField HeaderText="No. of Qus (Including Choice)">
 
             <ItemTemplate>
 
@@ -62,7 +73,7 @@
 
         </asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Total Mark">
+        <asp:TemplateField HeaderText="Individual Qus Mark">
 
             <ItemTemplate>
 
@@ -76,26 +87,41 @@
 
         </asp:TemplateField>
 
+        <asp:TemplateField HeaderText="Total Mark">
+
+            <ItemTemplate>
+
+                 <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control"></asp:TextBox>
+
+            </ItemTemplate>
+
+            <FooterStyle HorizontalAlign="Right" />
+
+            
+
+        </asp:TemplateField>
+
         </Columns>
 
-                  <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-                  <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-                  <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
-                  <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
-                  <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
-                  <SortedAscendingCellStyle BackColor="#FDF5AC" />
-                  <SortedAscendingHeaderStyle BackColor="#4D0000" />
-                  <SortedDescendingCellStyle BackColor="#FCF6C0" />
-                  <SortedDescendingHeaderStyle BackColor="#820000" />
+                  <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
+                  <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF" />
+                  <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
+                  <RowStyle BackColor="#DEDFDE" ForeColor="Black" />
+                  <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
+                  <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                  <SortedAscendingHeaderStyle BackColor="#594B9C" />
+                  <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                  <SortedDescendingHeaderStyle BackColor="#33276A" />
 
 </asp:gridview>
     </tr>
                           </table>
-            <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />                   
+                              &nbsp;
+            <asp:Button ID="Button1"  runat="server" CssClass="btn btn-theme" Text="Submit" OnClick="Button1_Click" Visible="false" />                   
                     </div>
                           </div>
                         </div>
         </div>
-
+    &nbsp;&nbsp;
 
 </asp:Content>

@@ -18,18 +18,22 @@ namespace QuesGen
         {
             if (!IsPostBack)
             {
-               // SqlConnection conn = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=qus;User ID=sa;Password=admin123");
                 con.Open();
-                string com = "Select scheme_name,scheme_id from tbl_scheme ";
+                string com = "Select exam_name,exam_id from tbl_exam ";
                 SqlDataAdapter adptt = new SqlDataAdapter(com, con);
                 DataTable dtt = new DataTable();
                 adptt.Fill(dtt);
-                ddlscheme.DataSource = dtt;
-                ddlscheme.DataTextField = "scheme_name";
-                ddlscheme.DataValueField = "scheme_id";
-                ddlscheme.DataBind();
+                ddlexam.DataSource = dtt;
+                ddlexam.DataTextField = "exam_name";
+                ddlexam.DataValueField = "exam_id";
+                ddlexam.DataBind();
+
+
+                
                 con.Close();
             }
+
+           
         }
 
 
@@ -48,6 +52,8 @@ namespace QuesGen
 
             dt.Columns.Add(new DataColumn("Column3", typeof(string)));
 
+            dt.Columns.Add(new DataColumn("Column4", typeof(string)));
+
             dr = dt.NewRow();
 
             dr["RowNumber"] = 1;
@@ -57,6 +63,8 @@ namespace QuesGen
             dr["Column2"] = string.Empty;
 
             dr["Column3"] = string.Empty;
+
+            dr["Column4"] = string.Empty;
 
             dt.Rows.Add(dr);
 
@@ -106,6 +114,8 @@ namespace QuesGen
 
                         TextBox box3 = (TextBox)Gridview1.Rows[rowIndex].Cells[3].FindControl("TextBox3");
 
+                        TextBox box4 = (TextBox)Gridview1.Rows[rowIndex].Cells[4].FindControl("TextBox4");
+
 
 
                         drCurrentRow = dtCurrentTable.NewRow();
@@ -119,6 +129,8 @@ namespace QuesGen
                         dtCurrentTable.Rows[i - 1]["Column2"] = box2.Text;
 
                         dtCurrentTable.Rows[i - 1]["Column3"] = box3.Text;
+
+                        dtCurrentTable.Rows[i - 1]["Column4"] = box4.Text;
 
 
 
@@ -177,6 +189,8 @@ namespace QuesGen
 
                         TextBox box3 = (TextBox)Gridview1.Rows[rowIndex].Cells[3].FindControl("TextBox3");
 
+                        TextBox box4 = (TextBox)Gridview1.Rows[rowIndex].Cells[3].FindControl("TextBox4");
+
 
 
                         box1.Text = dt.Rows[i]["Column1"].ToString();
@@ -184,6 +198,8 @@ namespace QuesGen
                         box2.Text = dt.Rows[i]["Column2"].ToString();
 
                         box3.Text = dt.Rows[i]["Column3"].ToString();
+
+                        box4.Text = dt.Rows[i]["Column4"].ToString();
 
 
 
@@ -209,8 +225,9 @@ namespace QuesGen
                     TextBox textBox1 = gr.FindControl("TextBox1") as TextBox;
                     TextBox textBox2 = gr.FindControl("TextBox2") as TextBox;
                     TextBox textBox3 = gr.FindControl("TextBox3") as TextBox;
+                    TextBox textBox4 = gr.FindControl("TextBox4") as TextBox;
 
-                    string sql = "insert into tbl_sec_mark(scheme_id,section,max_mark,total_mark) values('" + ddlscheme.SelectedItem.Value + "','" + textBox1.Text.Trim() + "','" + textBox2.Text.Trim() + "','" + textBox3.Text.Trim() + "')";
+                    string sql = "insert into tbl_sec_mark(scheme_id,section,no_qus,max_mark,total_mark) values('" + ddlscheme.SelectedItem.Value + "','" + textBox1.Text.Trim() + "','" + textBox2.Text.Trim() + "','" + textBox3.Text.Trim() + "','" + textBox4.Text.Trim() + "')";
                     SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.ExecuteNonQuery();
 
@@ -252,7 +269,29 @@ namespace QuesGen
             {
                 AddNewRowToGrid();
             }
+
+            Button1.Visible = true;
         }
+
+        protected void ddlexam_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            con.Open();
+            //string com = "Select scheme_id from tbl_exam where exam_id= '" + ddlexam.SelectedItem.Value + "' ";
+            string com = "select tbl_scheme.scheme_name,tbl_scheme.scheme_id,tbl_exam.scheme_id from tbl_scheme,tbl_exam where tbl_scheme.scheme_id=tbl_exam.scheme_id and exam_id= '" + ddlexam.SelectedItem.Value + "' ";
+
+            SqlDataAdapter adpt = new SqlDataAdapter(com, con);
+            DataTable dtt = new DataTable();
+            adpt.Fill(dtt);
+            ddlscheme.DataSource = dtt;
+            ddlscheme.DataTextField = "scheme_name";
+            ddlscheme.DataValueField = "scheme_id";
+            ddlscheme.DataBind();
+
+            ddlscheme.Items.Insert(0, new ListItem("Select", "0"));
+            con.Close();
+        }
+
+       
 
 
     }

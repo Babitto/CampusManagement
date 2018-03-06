@@ -13,6 +13,15 @@ namespace QuesGen {
     public partial class sec_mark {
         
         /// <summary>
+        /// ddlexam control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlexam;
+        
+        /// <summary>
         /// ddlscheme control.
         /// </summary>
         /// <remarks>
